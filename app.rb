@@ -3,6 +3,7 @@ require 'sinatra/namespace'
 require 'sinatra'
 require 'nbasalaryscrape'
 require 'json'
+require './income'
 
 # nbasalaryscrape service
 class TeamPayApp < Sinatra::Base
