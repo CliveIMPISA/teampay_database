@@ -28,6 +28,11 @@ Handles:
   - This final GET request returns a GUI form where a POST request for all players data could be done by entering a team's name and clicking the submit button
   - e.g https://team-pay.herokuapp.com/api/v1/form
 
+
+- GET /api/v1/incomes/:id
+  - takes: id # (1,2,3, etc.)
+  - returns: json of players' total salary
+
 ***
 ###POST Requests
 Handles:
@@ -42,11 +47,17 @@ Handles:
  - returns array of salary totals for the specified players
 
 
- - POST /api/v1/check3
+- POST /api/v1/check3
   - takes JSON: name of team and name of two players
   - returns difference in players' salary
 
 
+- POST /api/v1/incomes
+ - record incomes request to DB
+    - description (string)
+    - teamnames (json array)
+    - player_names (json array)
+  - redirects to GET /api/v1/tutorials/:id
 
 
 ####sample request body and headers for POST request
