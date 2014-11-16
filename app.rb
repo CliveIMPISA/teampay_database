@@ -179,18 +179,6 @@ class TeamPayApp < Sinatra::Base
       end
     end
 
-    get '/incomes/:id' do
-      content_type :json
-      begin
-        income = Income.find(params[:id])
-        teamname = JSON.parse(income.teamnames)
-        player_names = JSON.parse(income.player_names)
-      rescue
-        halt 400
-      end
-      player_total_salary(teamname, player_names).to_json
-    end
-
     post '/check3' do
     content_type :json
     begin
@@ -216,6 +204,18 @@ class TeamPayApp < Sinatra::Base
   post '/form' do
     content_type :json
     get_team(params[:message]).to_json
+  end
+
+  get '/api/v1/incomes/:id' do
+    content_type :json
+    begin
+      income = Income.find(params[:id])
+      teamname = JSON.parse(income.teamnames)
+      player_names = JSON.parse(income.player_names)
+    rescue
+      halt 400
+    end
+    player_total_salary(teamname, player_names).to_json
   end
 
   not_found do
