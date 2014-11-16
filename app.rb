@@ -161,7 +161,7 @@ class TeamPayApp < Sinatra::Base
       player_total_salary(teamname, player_name).to_json
     end
 
-    post '/check4' do
+    post '/incomes' do
         content_type :json
       begin
         req = JSON.parse(request.body.read)
