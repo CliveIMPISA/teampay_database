@@ -19,7 +19,7 @@ group :production do
   gem 'pg'
 end
 
-group:test do
+group :test do
 	gem 'minitest'
 	gem 'rack'
 	gem 'rack-test'
