@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'sinatra/namespace'
+# require 'sinatra/namespace'
 require 'sinatra'
 require 'nbasalaryscrape'
 require 'json'
@@ -7,7 +7,7 @@ require './income'
 
 # nbasalaryscrape service
 class TeamPayApp < Sinatra::Base
-  register Sinatra::Namespace
+  # register Sinatra::Namespace
 
   helpers do
     def get_team(teamname)
@@ -127,17 +127,17 @@ class TeamPayApp < Sinatra::Base
     end
   end
 
-  namespace '/api/v1'  do
-    get '/:teamname.json' do
+  # namespace '/api/v1'  do
+    get '/api/v1/:teamname.json' do
       content_type :json
       get_team(params[:teamname]).to_json
     end
 
-    get '/form' do
+    get '/api/v1/form' do
       erb :form
     end
 
-    post '/check' do
+    post '/api/v1/check' do
       content_type :json
       begin
         req = JSON.parse(request.body.read)
@@ -149,7 +149,7 @@ class TeamPayApp < Sinatra::Base
       player_salary_data(teamname, player_name).to_json
     end
 
-    post '/check2' do
+    post '/api/v1/check2' do
       content_type :json
       begin
         req = JSON.parse(request.body.read)
@@ -161,7 +161,7 @@ class TeamPayApp < Sinatra::Base
       player_total_salary(teamname, player_name).to_json
     end
 
-    post '/incomes' do
+    post '/api/v1/incomes' do
         content_type :json
       begin
         req = JSON.parse(request.body.read)
@@ -179,7 +179,7 @@ class TeamPayApp < Sinatra::Base
       end
     end
 
-    post '/check3' do
+    post '/api/v1/check3' do
     content_type :json
     begin
       req = JSON.parse(request.body.read)
@@ -191,11 +191,11 @@ class TeamPayApp < Sinatra::Base
     two_players_salary_data(teamname, player_name).to_json
   end
 
-    get '/players/:teamname.json' do
+    get '/api/v1/players/:teamname.json' do
       content_type :json
       get_team_players(params[:teamname]).to_json
     end
-  end
+  # end
 
   get '/' do
     erb :index
